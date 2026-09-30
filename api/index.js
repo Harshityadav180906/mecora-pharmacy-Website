@@ -20,6 +20,8 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://harshity1809_db_user:Mecora123456@cluster0.upka52f.mongodb.net/mecora?retryWrites=true&w=majority';
+
 let isConnected = false;
 async function connectDB() {
   if (isConnected || mongoose.connection.readyState === 1) {
@@ -27,9 +29,10 @@ async function connectDB() {
     return;
   }
   try {
-    if (process.env.MONGODB_URI) {
-      await mongoose.connect(process.env.MONGODB_URI, { dbName: 'mecora' });
+    if (MONGODB_URI) {
+      await mongoose.connect(MONGODB_URI, { dbName: 'mecora' });
       isConnected = true;
+      console.log('✅ MongoDB connected successfully');
     }
   } catch (err) {
     console.error('MongoDB connection error:', err.message);

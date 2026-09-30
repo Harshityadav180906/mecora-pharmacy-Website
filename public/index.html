@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mecora Medical - Smart Pharmacy Management Software</title>
+  <meta name="description" content="Mecora Medical - The complete pharmacy management solution. Manage inventory, orders, billing, and analytics with ease.">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='15' fill='%231a1a2e'/><text x='50' y='68' font-family='Arial' font-size='55' font-weight='bold' fill='%2300d4ff' text-anchor='middle'>M</text></svg>">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Razorpay Checkout -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Theme Init (Prevents FOUC) -->
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('mecora_theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const theme = savedTheme || (prefersDark ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#" class="nav-logo">
+        <div class="logo-icon">
+          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="40" height="40" rx="8" fill="url(#logo-gradient)"/>
+            <path d="M10 28V12h4l6 10 6-10h4v16h-4V18l-4 7h-4l-4-7v10h-4z" fill="white"/>
+            <defs>
+              <linearGradient id="logo-gradient" x1="0" y1="0" x2="40" y2="40">
+                <stop stop-color="#00d4ff"/>
+                <stop offset="1" stop-color="#0099cc"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <span class="logo-text">Mecora<span class="logo-accent">Medical</span></span>
+      </a>
+      
+      <ul class="nav-links">
+        <li><a href="#home" class="nav-link active">Home</a></li>
+        <li><a href="#features" class="nav-link">Features</a></li>
+        <li><a href="#demo" class="nav-link">Demo</a></li>
+        <li><a href="#pricing" class="nav-link">Pricing</a></li>
+        <li><a href="#testimonials" class="nav-link">Reviews</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+        <li><a href="https://mecora-pharmacy-software.vercel.app" target="_blank" class="nav-link" style="color: var(--accent-cyan); font-weight: 600;"><i class="fas fa-external-link-alt"></i> Open App</a></li>
+        <li class="mobile-theme-item">
+          <button class="theme-toggle-btn-mobile" id="themeToggleMobile" aria-label="Toggle Theme">
+            <span>
+              <i class="fas fa-sun theme-icon-sun"></i>
+              <i class="fas fa-moon theme-icon-moon"></i>
+              <span class="theme-mode-text">Dark Mode</span>
+            </span>
+          </button>
+        </li>
+      </ul>
+      
+      <div class="nav-actions">
+        <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle Light/Dark Theme" title="Toggle Light/Dark Theme">
+          <i class="fas fa-sun theme-icon-sun"></i>
+          <i class="fas fa-moon theme-icon-moon"></i>
+        </button>
+        <button class="btn btn-outline btn-sm" onclick="showLoginModal(null)">
+          <i class="fas fa-sign-in-alt"></i> Login
+        </button>
+        <a href="#pricing" class="btn btn-primary btn-sm">
+          Get Started <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+      
+      <button class="hamburger" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===== HERO SECTION ===== -->
+  <section id="home" class="hero">
+    <div class="particles-container"></div>
+    
+    <!-- Image Slider Background -->
+    <div class="hero-slider">
+      <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1920&q=80')"></div>
+      <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=1920&q=80')"></div>
+      <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1631549916768-4119b2e5f926?w=1920&q=80')"></div>
+      <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1585435557343-3b092031a831?w=1920&q=80')"></div>
+    </div>
+    
+    <div class="hero-overlay"></div>
+    
+    <div class="hero-content">
+      <div class="hero-badge animate-on-scroll">
+        <i class="fas fa-rocket"></i> #1 Pharmacy Management Software
+      </div>
+      <h1 class="hero-title animate-on-scroll">
+        Simplify Your<br>
+        <span class="gradient-text typing-text">Pharmacy Management</span>
+      </h1>
+      <p class="hero-subtitle animate-on-scroll">
+        Mecora Medical empowers pharmacies with intelligent inventory tracking, 
+        seamless order processing, real-time analytics, and complete billing management — 
+        all in one powerful platform.
+      </p>
+      <div class="hero-cta animate-on-scroll">
+        <a href="#pricing" class="btn btn-primary btn-lg pulse-btn">
+          <i class="fas fa-bolt"></i> Start Free Trial
+        </a>
+        <a href="#demo-video" class="btn btn-glass btn-lg">
+          <i class="fas fa-play-circle"></i> Watch Demo
+        </a>
+      </div>
+      <div class="hero-stats animate-on-scroll">
+        <div class="stat-item">
+          <span class="stat-number counter" data-target="500">0</span>+
+          <span class="stat-label">Pharmacies</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number counter" data-target="50000">0</span>+
+          <span class="stat-label">Orders Processed</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number">99.9%</span>
+          <span class="stat-label">Uptime</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="slider-dots"></div>
+    
+    <div class="hero-scroll-indicator">
+      <a href="#features">
+        <div class="scroll-mouse">
+          <div class="scroll-wheel"></div>
+        </div>
+        <span>Scroll Down</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== FEATURES SECTION ===== -->
+  <section id="features" class="features-section">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <span class="section-tag"><i class="fas fa-star"></i> Features</span>
+        <h2 class="section-title">Everything Your Pharmacy Needs</h2>
+        <p class="section-subtitle">Powerful tools designed specifically for modern pharmacy management</p>
+      </div>
+      
+      <div class="features-grid animate-on-scroll">
+        <div class="feature-card stagger-child">
+          <div class="feature-icon" style="--accent: #00d4ff">
+            <i class="fas fa-boxes-stacked"></i>
+          </div>
+          <h3>Smart Inventory</h3>
+          <p>Real-time stock tracking with automatic low-stock alerts, expiry management, and barcode scanning support.</p>
+        </div>
+        
+        <div class="feature-card stagger-child">
+          <div class="feature-icon" style="--accent: #38a169">
+            <i class="fas fa-cart-shopping"></i>
+          </div>
+          <h3>Order Processing</h3>
+          <p>Lightning-fast order creation with medicine search, patient details, and multiple payment methods support.</p>
+        </div>
+        
+        <div class="feature-card stagger-child">
+          <div class="feature-icon" style="--accent: #f6e05e">
+            <i class="fas fa-file-invoice-dollar"></i>
+          </div>
+          <h3>Billing & Invoicing</h3>
+          <p>Generate professional bills with GST calculations, print receipts, and download invoices instantly.</p>
+        </div>
+        
+        <div class="feature-card stagger-child">
+          <div class="feature-icon" style="--accent: #fc8181">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3>Analytics Dashboard</h3>
+          <p>Comprehensive business insights with revenue tracking, performance analytics, and trend visualization.</p>
+        </div>
+        
+        <div class="feature-card stagger-child">
+          <div class="feature-icon" style="--accent: #b794f4">
+            <i class="fas fa-user-shield"></i>
+          </div>
+          <h3>Admin Panel</h3>
+          <p>Complete admin control with staff management, activity audit logs, and system configuration options.</p>
+        </div>
+        
+        <div class="feature-card stagger-child">
+          <div class="feature-icon" style="--accent: #f687b3">
+            <i class="fas fa-cloud-arrow-up"></i>
+          </div>
+          <h3>Cloud Based</h3>
+          <p>Access your pharmacy data from anywhere. Secure cloud storage with automatic backups and data encryption.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DEMO / SCREENSHOTS SECTION ===== -->
+  <section id="demo" class="demo-section">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <span class="section-tag"><i class="fas fa-laptop"></i> Live Preview</span>
+        <h2 class="section-title">See Mecora in Action</h2>
+        <p class="section-subtitle">Take a look at the powerful features and clean interface</p>
+      </div>
+      
+      <div class="demo-showcase animate-on-scroll">
+        <div class="demo-tabs">
+          <button class="demo-tab active" data-tab="dashboard">
+            <i class="fas fa-tachometer-alt"></i> Dashboard
+          </button>
+          <button class="demo-tab" data-tab="orders">
+            <i class="fas fa-receipt"></i> Orders
+          </button>
+          <button class="demo-tab" data-tab="inventory">
+            <i class="fas fa-boxes-stacked"></i> Inventory
+          </button>
+          <button class="demo-tab" data-tab="admin">
+            <i class="fas fa-cog"></i> Admin
+          </button>
+        </div>
+        
+        <div class="demo-screen">
+          <div class="demo-browser-bar">
+            <div class="browser-dots">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+            </div>
+            <div class="browser-url">
+              <i class="fas fa-lock"></i> mecora-software.vercel.app
+            </div>
+          </div>
+          <div class="demo-content">
+            <div class="demo-panel active" id="panel-dashboard">
+              <div class="demo-mockup">
+                <div class="mockup-header">
+                  <span class="mockup-logo">Mecora Medical</span>
+                  <div class="mockup-nav">
+                    <span class="active">Dashboard</span>
+                    <span>Inventory</span>
+                    <span>New Order</span>
+                    <span>Order History</span>
+                  </div>
+                </div>
+                <h3 style="margin: 15px 20px 5px; font-size: 18px;">Mecora Dashboard</h3>
+                <p style="margin: 0 20px 15px; font-size: 11px; color: #00d4ff;">Logged in as: harshit (admin)</p>
+                <div class="mockup-stats">
+                  <div class="mockup-stat-card">
+                    <span class="mockup-stat-label">TOTAL ORDERS</span>
+                    <span class="mockup-stat-value">11</span>
+                  </div>
+                  <div class="mockup-stat-card">
+                    <span class="mockup-stat-label">TOTAL PRODUCTS</span>
+                    <span class="mockup-stat-value">50</span>
+                  </div>
+                  <div class="mockup-stat-card highlight">
+                    <span class="mockup-stat-label">TOTAL REVENUE</span>
+                    <span class="mockup-stat-value">₹1,137.00</span>
+                  </div>
+                </div>
+                <div class="mockup-stats" style="margin-top: 10px;">
+                  <div class="mockup-stat-card">
+                    <span class="mockup-stat-label" style="color: #fc8181;">MONTHLY REVENUE</span>
+                    <span class="mockup-stat-value">₹1,137.00</span>
+                  </div>
+                  <div class="mockup-stat-card">
+                    <span class="mockup-stat-label" style="color: #f6e05e;">LOW STOCK</span>
+                    <span class="mockup-stat-value">1</span>
+                  </div>
+                  <div class="mockup-stat-card">
+                    <span class="mockup-stat-label" style="color: #38a169;">OUT OF STOCK</span>
+                    <span class="mockup-stat-value">0</span>
+                  </div>
+                </div>
+                <div class="mockup-chart">
+                  <div class="chart-title">Store Performance Analytics</div>
+                  <svg viewBox="0 0 400 100" class="mini-chart">
+                    <polyline points="20,60 70,55 120,65 170,80 220,75 270,50 320,55 370,70" fill="none" stroke="#00d4ff" stroke-width="2"/>
+                    <circle cx="20" cy="60" r="3" fill="#00d4ff"/>
+                    <circle cx="70" cy="55" r="3" fill="#00d4ff"/>
+                    <circle cx="120" cy="65" r="3" fill="#00d4ff"/>
+                    <circle cx="170" cy="80" r="3" fill="#00d4ff"/>
+                    <circle cx="220" cy="75" r="3" fill="#00d4ff"/>
+                    <circle cx="270" cy="50" r="3" fill="#00d4ff"/>
+                    <circle cx="320" cy="55" r="3" fill="#00d4ff"/>
+                    <circle cx="370" cy="70" r="3" fill="#00d4ff"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="demo-panel" id="panel-orders">
+              <div class="demo-mockup">
+                <div class="mockup-header">
+                  <span class="mockup-logo">Mecora Medical</span>
+                  <div class="mockup-nav">
+                    <span>Dashboard</span>
+                    <span>Inventory</span>
+                    <span>New Order</span>
+                    <span class="active">Order History</span>
+                  </div>
+                </div>
+                <h3 style="margin: 15px 20px 10px; font-size: 16px;">All Placed Orders Dashboard</h3>
+                <div class="mockup-collection-row">
+                  <div class="collection-badge green"><span>CASH COLLECTION</span><strong>₹664.00</strong></div>
+                  <div class="collection-badge blue"><span>UPI COLLECTION</span><strong>₹315.00</strong></div>
+                  <div class="collection-badge purple"><span>CARD COLLECTION</span><strong>₹158.00</strong></div>
+                  <div class="collection-badge orange"><span>TOTAL ORDERS</span><strong>11</strong></div>
+                </div>
+                <div class="mockup-table">
+                  <div class="table-row header">
+                    <span>MEMO/ID</span><span>DATE</span><span>PATIENT</span><span>TOTAL</span><span>METHOD</span>
+                  </div>
+                  <div class="table-row"><span>M-4206</span><span>23/9/2026</span><span>NA</span><span style="color:#00d4ff">₹152.00</span><span class="badge-upi">UPI</span></div>
+                  <div class="table-row"><span>M-5508</span><span>24/7/2026</span><span>MOHIT</span><span style="color:#00d4ff">₹162.00</span><span class="badge-cash">Cash</span></div>
+                  <div class="table-row"><span>M-7857</span><span>11/7/2026</span><span>HARSHIT</span><span style="color:#00d4ff">₹95.00</span><span class="badge-upi">UPI</span></div>
+                  <div class="table-row"><span>M-9960</span><span>9/7/2026</span><span>JAGRATI</span><span style="color:#00d4ff">₹58.00</span><span class="badge-cash">Cash</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="demo-panel" id="panel-inventory">
+              <div class="demo-mockup">
+                <div class="mockup-header">
+                  <span class="mockup-logo">Mecora Medical</span>
+                  <div class="mockup-nav">
+                    <span>Dashboard</span>
+                    <span class="active">Inventory</span>
+                    <span>New Order</span>
+                    <span>Order History</span>
+                  </div>
+                </div>
+                <h3 style="margin: 15px 20px 10px; font-size: 16px;">Add New Product</h3>
+                <div class="mockup-form">
+                  <div class="form-row">
+                    <div class="form-field"><label>Barcode</label><div class="field-placeholder">Type barcode and press Enter</div></div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-field"><label>Product Name</label><div class="field-placeholder"></div></div>
+                  </div>
+                  <div class="form-row two-col">
+                    <div class="form-field"><label>Pack</label><div class="field-placeholder">e.g. 10 tablets</div></div>
+                    <div class="form-field"><label>Batch</label><div class="field-placeholder">Batch number</div></div>
+                  </div>
+                  <div class="form-row two-col">
+                    <div class="form-field"><label>Price (₹)</label><div class="field-placeholder"></div></div>
+                    <div class="form-field"><label>Stock Quantity</label><div class="field-placeholder"></div></div>
+                  </div>
+                  <div class="mockup-btn">Add New Product</div>
+                </div>
+              </div>
+            </div>
+            <div class="demo-panel" id="panel-admin">
+              <div class="demo-mockup">
+                <div class="mockup-header">
+                  <span class="mockup-logo">Mecora Medical</span>
+                  <div class="mockup-nav">
+                    <span>Dashboard</span>
+                    <span>Inventory</span>
+                    <span>New Order</span>
+                    <span class="active">Admin Panel</span>
+                  </div>
+                </div>
+                <h3 style="margin: 15px 20px 5px; font-size: 16px;">Admin Dashboard</h3>
+                <p style="margin: 0 20px 10px; font-size: 10px; color: #a0aec0;">Active: harshit (ADMIN)</p>
+                <div class="mockup-stats">
+                  <div class="mockup-stat-card"><span class="mockup-stat-label">TOTAL PRODUCTS</span><span class="mockup-stat-value">50</span></div>
+                  <div class="mockup-stat-card"><span class="mockup-stat-label" style="color:#fc8181">LOW STOCK</span><span class="mockup-stat-value">1</span></div>
+                  <div class="mockup-stat-card"><span class="mockup-stat-label" style="color:#38a169">OUT OF STOCK</span><span class="mockup-stat-value">0</span></div>
+                </div>
+                <div class="mockup-alert">
+                  <h4>Stock Alerts</h4>
+                  <div class="alert-item">
+                    <span>Ibuprofen 400mg (Brufen)</span>
+                    <span class="alert-badge">Only 5 left</span>
+                    <button class="restock-btn">+ Restock</button>
+                  </div>
+                </div>
+                <div class="mockup-audit">
+                  <h4>Activity Audit Log</h4>
+                  <div class="audit-entry"><span class="time">[12:31:39]</span> <span class="user">harshit</span> <span class="admin-badge">ADMIN</span> SECURITY: User "harshit" logged in</div>
+                  <div class="audit-entry"><span class="time">[10:25:01]</span> <span class="user">harshit</span> <span class="admin-badge">ADMIN</span> SECURITY: User "harshit" logged in</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DEMO VIDEO SECTION ===== -->
+  <section id="demo-video" class="demo-video-section">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <span class="section-tag"><i class="fas fa-play-circle"></i> Watch Demo</span>
+        <h2 class="section-title">See Mecora in Action</h2>
+        <p class="section-subtitle">Watch how Mecora Medical works on your preferred device</p>
+      </div>
+
+      <!-- Device Toggle -->
+      <div class="device-toggle animate-on-scroll">
+        <button class="device-btn active" data-device="pc" id="btnPC">
+          <i class="fas fa-desktop"></i>
+          <span>Desktop / PC</span>
+        </button>
+        <button class="device-btn" data-device="phone" id="btnPhone">
+          <i class="fas fa-mobile-alt"></i>
+          <span>Mobile / Phone</span>
+        </button>
+      </div>
+
+      <!-- PC Demo Player -->
+      <div class="demo-player-wrapper animate-on-scroll">
+        <div class="demo-player pc-player active" id="pcPlayer">
+          <div class="player-frame pc-frame">
+            <div class="pc-top-bar">
+              <div class="pc-dots">
+                <span class="pc-dot red"></span>
+                <span class="pc-dot yellow"></span>
+                <span class="pc-dot green"></span>
+              </div>
+              <div class="pc-address-bar">
+                <i class="fas fa-lock"></i> mecora-software.vercel.app
+              </div>
+              <div class="pc-controls">
+                <i class="fas fa-redo"></i>
+              </div>
+            </div>
+            <div class="player-screen">
+              <div class="video-slide active" data-index="0">
+                <img src="images/demo/dashboard.png" alt="Mecora Dashboard">
+                <div class="slide-caption">
+                  <span class="caption-number">01</span>
+                  <div>
+                    <strong>Mecora Dashboard</strong>
+                    <p>View total orders, products, revenue & performance analytics at a glance</p>
+                  </div>
+                </div>
+              </div>
+              <div class="video-slide" data-index="1">
+                <img src="images/demo/dashboard-chart.png" alt="Analytics Charts">
+                <div class="slide-caption">
+                  <span class="caption-number">02</span>
+                  <div>
+                    <strong>Performance Analytics</strong>
+                    <p>Track daily, weekly, monthly revenue with interactive charts</p>
+                  </div>
+                </div>
+              </div>
+              <div class="video-slide" data-index="2">
+                <img src="images/demo/orders.png" alt="Orders Dashboard">
+                <div class="slide-caption">
+                  <span class="caption-number">03</span>
+                  <div>
+                    <strong>Orders Dashboard</strong>
+                    <p>Manage all placed orders with UPI, Cash & Card collection tracking</p>
+                  </div>
+                </div>
+              </div>
+              <div class="video-slide" data-index="3">
+                <img src="images/demo/add-product.png" alt="Add Product">
+                <div class="slide-caption">
+                  <span class="caption-number">04</span>
+                  <div>
+                    <strong>Add New Product</strong>
+                    <p>Quick product entry with barcode scanning, pricing, batch & expiry tracking</p>
+                  </div>
+                </div>
+              </div>
+              <div class="video-slide" data-index="4">
+                <img src="images/demo/admin.png" alt="Admin Panel">
+                <div class="slide-caption">
+                  <span class="caption-number">05</span>
+                  <div>
+                    <strong>Admin Dashboard</strong>
+                    <p>Stock alerts, activity audit logs, and staff management in one place</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Video Controls -->
+            <div class="player-controls">
+              <button class="play-pause-btn" id="pcPlayBtn" title="Play / Pause">
+                <i class="fas fa-pause"></i>
+              </button>
+              <div class="progress-bar-container">
+                <div class="progress-bar" id="pcProgress"></div>
+              </div>
+              <div class="slide-counter"><span id="pcCurrent">1</span> / <span id="pcTotal">5</span></div>
+              <div class="player-nav-btns">
+                <button class="nav-prev" title="Previous"><i class="fas fa-step-backward"></i></button>
+                <button class="nav-next" title="Next"><i class="fas fa-step-forward"></i></button>
+              </div>
+              <button class="fullscreen-btn" title="Fullscreen"><i class="fas fa-expand"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Phone Demo Player -->
+        <div class="demo-player phone-player" id="phonePlayer">
+          <div class="player-frame phone-frame">
+            <div class="phone-notch">
+              <div class="notch-camera"></div>
+            </div>
+            <div class="phone-status-bar">
+              <span class="phone-time">9:41</span>
+              <div class="phone-status-icons">
+                <i class="fas fa-signal"></i>
+                <i class="fas fa-wifi"></i>
+                <i class="fas fa-battery-three-quarters"></i>
+              </div>
+            </div>
+            <div class="player-screen phone-screen">
+              <div class="video-slide active" data-index="0">
+                <img src="images/demo/dashboard.png" alt="Mecora Dashboard - Mobile">
+                <div class="slide-caption">
+                  <span class="caption-number">01</span>
+                  <div>
+                    <strong>Dashboard</strong>
+                    <p>Full dashboard on mobile</p>
+                  </div>
+                </div>
+              </div>
+              <div class="video-slide" data-index="1">
+                <img src="images/demo/dashboard-chart.png" alt="Analytics - Mobile">
+                <div class="slide-caption">
+                  <span class="caption-number">02</span>
+                  <div>
+                    <strong>Analytics</strong>
+                    <p>Charts optimized for mobile</p>
+                  </div>
+                </div>
+              </div>
+              <div class="video-slide" data-index="2">
+                <img src="images/demo/orders.png" alt="Orders - Mobile">
+                <div class="slide-caption">
+                  <span class="caption-number">03</span>
+                  <div>
+                    <strong>Orders</strong>
+                    <p>Manage orders on the go</p>
+                  </div>
+                </div>
+              </div>
+              <div class="video-slide" data-index="3">
+                <img src="images/demo/add-product.png" alt="Add Product - Mobile">
+                <div class="slide-caption">
+                  <span class="caption-number">04</span>
+                  <div>
+                    <strong>Add Product</strong>
+                    <p>Add products from anywhere</p>
+                  </div>
+                </div>
+              </div>
+              <div class="video-slide" data-index="4">
+                <img src="images/demo/admin.png" alt="Admin - Mobile">
+                <div class="slide-caption">
+                  <span class="caption-number">05</span>
+                  <div>
+                    <strong>Admin Panel</strong>
+                    <p>Full admin access on mobile</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Phone Controls -->
+            <div class="player-controls phone-controls">
+              <button class="play-pause-btn" id="phonePlayBtn" title="Play / Pause">
+                <i class="fas fa-pause"></i>
+              </button>
+              <div class="progress-bar-container">
+                <div class="progress-bar" id="phoneProgress"></div>
+              </div>
+              <div class="slide-counter"><span id="phoneCurrent">1</span> / <span id="phoneTotal">5</span></div>
+              <div class="player-nav-btns">
+                <button class="nav-prev" title="Previous"><i class="fas fa-step-backward"></i></button>
+                <button class="nav-next" title="Next"><i class="fas fa-step-forward"></i></button>
+              </div>
+            </div>
+            <div class="phone-home-bar"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature Highlights under the Video -->
+      <div class="demo-video-features animate-on-scroll">
+        <div class="demo-feature-pill">
+          <i class="fas fa-bolt"></i> Real-Time Data
+        </div>
+        <div class="demo-feature-pill">
+          <i class="fas fa-mobile-alt"></i> Mobile Responsive
+        </div>
+        <div class="demo-feature-pill">
+          <i class="fas fa-chart-line"></i> Live Analytics
+        </div>
+        <div class="demo-feature-pill">
+          <i class="fas fa-shield-alt"></i> Secure & Fast
+        </div>
+        <div class="demo-feature-pill">
+          <i class="fas fa-cloud"></i> Cloud Based
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRICING SECTION ===== -->
+  <section id="pricing" class="pricing-section">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <span class="section-tag"><i class="fas fa-tags"></i> Pricing</span>
+        <h2 class="section-title">Simple, Transparent Pricing</h2>
+        <p class="section-subtitle">Choose the plan that fits your pharmacy. No hidden fees, cancel anytime.</p>
+      </div>
+      
+      <div class="pricing-grid animate-on-scroll">
+        <!-- Monthly Plan -->
+        <div class="pricing-card stagger-child">
+          <div class="pricing-header">
+            <div class="plan-icon">
+              <i class="fas fa-calendar-day"></i>
+            </div>
+            <h3 class="plan-name">Monthly</h3>
+            <p class="plan-desc">Perfect for trying out</p>
+          </div>
+          <div class="pricing-body">
+            <div class="plan-price">
+              <span class="currency">₹</span>
+              <span class="amount">2,000</span>
+              <span class="period">/month</span>
+            </div>
+            <ul class="plan-features">
+              <li><i class="fas fa-check"></i> Full Software Access</li>
+              <li><i class="fas fa-check"></i> Inventory Management</li>
+              <li><i class="fas fa-check"></i> Order Processing</li>
+              <li><i class="fas fa-check"></i> Billing & Invoicing</li>
+              <li><i class="fas fa-check"></i> Basic Analytics</li>
+              <li><i class="fas fa-check"></i> Email Support</li>
+              <li class="disabled"><i class="fas fa-times"></i> Priority Support</li>
+              <li class="disabled"><i class="fas fa-times"></i> Custom Reports</li>
+            </ul>
+          </div>
+          <div class="pricing-footer">
+            <button class="btn btn-outline btn-block" onclick="selectPlan('monthly')">
+              <i class="fas fa-bolt"></i> Get Started
+            </button>
+          </div>
+        </div>
+
+        <!-- Quarterly Plan (Popular) -->
+        <div class="pricing-card popular stagger-child">
+          <div class="popular-badge">
+            <i class="fas fa-crown"></i> Most Popular
+          </div>
+          <div class="pricing-header">
+            <div class="plan-icon">
+              <i class="fas fa-calendar-week"></i>
+            </div>
+            <h3 class="plan-name">Quarterly</h3>
+            <p class="plan-desc">Best value for growing pharmacies</p>
+          </div>
+          <div class="pricing-body">
+            <div class="plan-price">
+              <span class="currency">₹</span>
+              <span class="amount">4,500</span>
+              <span class="period">/3 months</span>
+            </div>
+            <div class="plan-savings">
+              <i class="fas fa-piggy-bank"></i> Save ₹1,500 vs monthly
+            </div>
+            <ul class="plan-features">
+              <li><i class="fas fa-check"></i> Full Software Access</li>
+              <li><i class="fas fa-check"></i> Inventory Management</li>
+              <li><i class="fas fa-check"></i> Order Processing</li>
+              <li><i class="fas fa-check"></i> Billing & Invoicing</li>
+              <li><i class="fas fa-check"></i> Advanced Analytics</li>
+              <li><i class="fas fa-check"></i> Priority Support</li>
+              <li><i class="fas fa-check"></i> Staff Management</li>
+              <li class="disabled"><i class="fas fa-times"></i> Custom Reports</li>
+            </ul>
+          </div>
+          <div class="pricing-footer">
+            <button class="btn btn-primary btn-block pulse-btn" onclick="selectPlan('quarterly')">
+              <i class="fas fa-crown"></i> Get Started
+            </button>
+          </div>
+        </div>
+
+        <!-- Annual Plan -->
+        <div class="pricing-card stagger-child">
+          <div class="pricing-header">
+            <div class="plan-icon">
+              <i class="fas fa-calendar-check"></i>
+            </div>
+            <h3 class="plan-name">Annual</h3>
+            <p class="plan-desc">Maximum savings for committed pharmacies</p>
+          </div>
+          <div class="pricing-body">
+            <div class="plan-price">
+              <span class="currency">₹</span>
+              <span class="amount">10,000</span>
+              <span class="period">/year</span>
+            </div>
+            <div class="plan-savings">
+              <i class="fas fa-piggy-bank"></i> Save ₹14,000 vs monthly
+            </div>
+            <ul class="plan-features">
+              <li><i class="fas fa-check"></i> Full Software Access</li>
+              <li><i class="fas fa-check"></i> Inventory Management</li>
+              <li><i class="fas fa-check"></i> Order Processing</li>
+              <li><i class="fas fa-check"></i> Billing & Invoicing</li>
+              <li><i class="fas fa-check"></i> Advanced Analytics</li>
+              <li><i class="fas fa-check"></i> Priority Support</li>
+              <li><i class="fas fa-check"></i> Staff Management</li>
+              <li><i class="fas fa-check"></i> Custom Reports</li>
+            </ul>
+          </div>
+          <div class="pricing-footer">
+            <button class="btn btn-outline btn-block" onclick="selectPlan('annual')">
+              <i class="fas fa-rocket"></i> Get Started
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="pricing-footer-note animate-on-scroll">
+        <div class="payment-methods">
+          <span><i class="fas fa-shield-halved"></i> Secure Payments via</span>
+          <div class="payment-icons">
+            <div class="payment-icon-badge"><i class="fas fa-mobile-screen"></i> UPI</div>
+            <div class="payment-icon-badge"><i class="fas fa-credit-card"></i> Cards</div>
+            <div class="payment-icon-badge"><i class="fas fa-university"></i> Net Banking</div>
+            <div class="payment-icon-badge"><i class="fas fa-wallet"></i> Wallets</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIALS SECTION ===== -->
+  <section id="testimonials" class="testimonials-section">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <span class="section-tag"><i class="fas fa-quote-left"></i> Testimonials</span>
+        <h2 class="section-title">Loved by Pharmacies Everywhere</h2>
+        <p class="section-subtitle">Hear from pharmacy owners who transformed their business with Mecora</p>
+      </div>
+      
+      <div class="testimonials-slider animate-on-scroll">
+        <div class="testimonial-track">
+          <div class="testimonial-card stagger-child">
+            <div class="testimonial-stars">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <p class="testimonial-text">"Mecora has completely transformed how we manage our pharmacy. The inventory tracking alone has saved us hours every week. The barcode scanning feature is incredibly fast!"</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">RK</div>
+              <div class="author-info">
+                <strong>Dr. Rajesh Kumar</strong>
+                <span>Kumar Medical Store, Delhi</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="testimonial-card stagger-child">
+            <div class="testimonial-stars">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <p class="testimonial-text">"The analytics dashboard gives me real-time insights into my business. I can track revenue, identify slow-moving stock, and make data-driven decisions. Highly recommended!"</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">PS</div>
+              <div class="author-info">
+                <strong>Priya Sharma</strong>
+                <span>HealthPlus Pharmacy, Mumbai</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="testimonial-card stagger-child">
+            <div class="testimonial-stars">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+            </div>
+            <p class="testimonial-text">"We switched from manual billing to Mecora and the difference is night and day. The UPI integration and bill printing features are seamless. Great value for money!"</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">AG</div>
+              <div class="author-info">
+                <strong>Amit Gupta</strong>
+                <span>Gupta Medicos, Jaipur</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="testimonial-card stagger-child">
+            <div class="testimonial-stars">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <p class="testimonial-text">"The admin panel and staff management features are excellent. I can track every action, manage multiple staff members, and keep my pharmacy running smoothly even when I'm not there."</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">SP</div>
+              <div class="author-info">
+                <strong>Suresh Patel</strong>
+                <span>Lifeline Pharmacy, Ahmedabad</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA SECTION ===== -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content animate-on-scroll">
+        <h2>Ready to Modernize Your Pharmacy?</h2>
+        <p>Join 500+ pharmacies already using Mecora Medical. Start your free trial today — no credit card required.</p>
+        <div class="cta-buttons">
+          <a href="#pricing" class="btn btn-primary btn-lg">
+            <i class="fas fa-rocket"></i> Get Started Now
+          </a>
+          <a href="mailto:support@mecora.com" class="btn btn-glass btn-lg">
+            <i class="fas fa-envelope"></i> Contact Sales
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer id="contact" class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="40" height="40" rx="8" fill="url(#footer-logo-gradient)"/>
+              <path d="M10 28V12h4l6 10 6-10h4v16h-4V18l-4 7h-4l-4-7v10h-4z" fill="white"/>
+              <defs>
+                <linearGradient id="footer-logo-gradient" x1="0" y1="0" x2="40" y2="40">
+                  <stop stop-color="#00d4ff"/>
+                  <stop offset="1" stop-color="#0099cc"/>
+                </linearGradient>
+              </defs>
+            </svg>
+            <span>Mecora<span style="color: #00d4ff;">Medical</span></span>
+          </div>
+          <p>The complete pharmacy management solution. Simplify your workflow, boost your revenue.</p>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+        
+        <div class="footer-links">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#demo">Demo</a></li>
+            <li><a href="#">Updates</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-links">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Press</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-links">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="#">Help Center</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-contact">
+          <h4>Get in Touch</h4>
+          <ul>
+            <li><i class="fas fa-envelope"></i> support@mecora.com</li>
+            <li><i class="fas fa-phone"></i> +91 98765 43210</li>
+            <li><i class="fas fa-map-marker-alt"></i> India</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2026 Mecora Medical Software. All rights reserved.</p>
+        <p>Made with <i class="fas fa-heart" style="color: #fc8181;"></i> in India</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== AUTH MODAL (Login/Signup) ===== -->
+  <div class="modal-overlay" id="authModal">
+    <div class="modal-container auth-modal">
+      <button class="modal-close" onclick="closeAuthModal()">
+        <i class="fas fa-times"></i>
+      </button>
+      
+      <div class="modal-header">
+        <div class="modal-logo">
+          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="40" height="40" rx="8" fill="url(#modal-logo-gradient)"/>
+            <path d="M10 28V12h4l6 10 6-10h4v16h-4V18l-4 7h-4l-4-7v10h-4z" fill="white"/>
+            <defs>
+              <linearGradient id="modal-logo-gradient" x1="0" y1="0" x2="40" y2="40">
+                <stop stop-color="#00d4ff"/>
+                <stop offset="1" stop-color="#0099cc"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <h2>Welcome to Mecora</h2>
+        <p>Sign in to continue with your purchase</p>
+      </div>
+      
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-tab="login" onclick="switchAuthTab('login')">Login</button>
+        <button class="auth-tab" data-tab="signup" onclick="switchAuthTab('signup')">Sign Up</button>
+      </div>
+      
+      <!-- Login Form -->
+      <form class="auth-form active" id="loginForm" onsubmit="handleLogin(event)">
+        <div class="form-group">
+          <label for="loginEmail"><i class="fas fa-envelope"></i> Email Address</label>
+          <input type="email" id="loginEmail" placeholder="Enter your email" required>
+        </div>
+        <div class="form-group">
+          <label for="loginPassword"><i class="fas fa-lock"></i> Password</label>
+          <input type="password" id="loginPassword" placeholder="Enter your password" required>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">
+          <i class="fas fa-sign-in-alt"></i> Login & Pay
+        </button>
+      </form>
+      
+      <!-- Signup Form -->
+      <form class="auth-form" id="signupForm" onsubmit="handleSignup(event)">
+        <div class="form-group">
+          <label for="signupName"><i class="fas fa-user"></i> Full Name</label>
+          <input type="text" id="signupName" placeholder="Enter your full name" required>
+        </div>
+        <div class="form-group">
+          <label for="signupEmail"><i class="fas fa-envelope"></i> Email Address</label>
+          <input type="email" id="signupEmail" placeholder="Enter your email" required>
+        </div>
+        <div class="form-group">
+          <label for="signupPhone"><i class="fas fa-phone"></i> Phone Number</label>
+          <input type="tel" id="signupPhone" placeholder="Enter your phone number" required>
+        </div>
+        <div class="form-group">
+          <label for="signupPassword"><i class="fas fa-lock"></i> Password</label>
+          <input type="password" id="signupPassword" placeholder="Create a password" required minlength="6">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">
+          <i class="fas fa-user-plus"></i> Create Account & Pay
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===== SUCCESS MODAL ===== -->
+  <div class="modal-overlay" id="successModal">
+    <div class="confetti-container"></div>
+    <div class="modal-container success-modal">
+      <div class="success-icon">
+        <svg viewBox="0 0 100 100" fill="none">
+          <circle cx="50" cy="50" r="45" stroke="#38a169" stroke-width="4" fill="rgba(56, 161, 105, 0.1)"/>
+          <path d="M30 50 L45 65 L70 35" stroke="#38a169" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" class="check-path"/>
+        </svg>
+      </div>
+      <h2>Payment Successful! 🎉</h2>
+      <p>Thank you for subscribing to Mecora Medical</p>
+      
+      <div class="success-details">
+        <div class="detail-row">
+          <span>Plan:</span>
+          <strong id="successPlan"></strong>
+        </div>
+        <div class="detail-row">
+          <span>Amount:</span>
+          <strong id="successAmount" class="amount-highlight"></strong>
+        </div>
+        <div class="detail-row">
+          <span>Payment ID:</span>
+          <strong id="successPaymentId" class="payment-id"></strong>
+        </div>
+        <div class="detail-row">
+          <span>Date:</span>
+          <strong id="successDate"></strong>
+        </div>
+      </div>
+      
+      <div class="success-message">
+        <i class="fas fa-envelope"></i>
+        <p>A confirmation email with receipt and credentials has been generated.</p>
+      </div>
+      
+      <div class="success-actions" style="display: flex; flex-direction: column; gap: 0.8rem; margin-top: 1.2rem;">
+        <a id="launchSoftwareBtn" href="http://localhost:3001" class="btn btn-primary btn-block btn-lg pulse-btn" style="text-decoration: none; font-size: 1.05rem;">
+          <i class="fas fa-rocket"></i> Open Mecora Software Dashboard
+        </a>
+        <div id="redirectCountdown" style="font-size: 0.85rem; color: var(--text-muted); text-align: center;">
+          ⚡ Automatically redirecting to software in <span id="countdownTimer" style="color: var(--accent-cyan); font-weight: 700; font-size: 1.1rem;">5</span> seconds...
+        </div>
+        <button class="btn btn-outline btn-block btn-sm" onclick="cancelRedirectAndClose()">
+          <i class="fas fa-times"></i> Stay on Website
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== LOADING OVERLAY ===== -->
+  <div id="loadingOverlay" class="loading-overlay">
+    <div class="loading-content">
+      <div class="loading-spinner"></div>
+      <p class="loading-message">Processing...</p>
+    </div>
+  </div>
+
+  <!-- ===== TOAST CONTAINER ===== -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <!-- Demo tab switching script (inline for quick load) -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.demo-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+          document.querySelectorAll('.demo-tab').forEach(t => t.classList.remove('active'));
+          document.querySelectorAll('.demo-panel').forEach(p => p.classList.remove('active'));
+          tab.classList.add('active');
+          document.getElementById(`panel-${tab.dataset.tab}`).classList.add('active');
+        });
+      });
+    });
+  </script>
+
+  <!-- Main JavaScript -->
+  <script src="js/main.js"></script>
+</body>
+</html>
